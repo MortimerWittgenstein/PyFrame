@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="apple-touch-icon" sizes="180x180" href="/static/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/static/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/static/favicon-16x16.png">
+    <link rel="manifest" href="/static/site.webmanifest">
+    <link rel="mask-icon" href="/static/safari-pinned-tab.svg" color="#5bbad5">
+    <link rel="shortcut icon" href="/static/favicon.ico">
+    <meta name="msapplication-TileColor" content="#da532c">
+    <meta name="msapplication-config" content="/static/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    <style>
+        html, body {
+            height: 100%;
+            width: 100%;
+            font-family: "Segoe UI", Arial, Helvetica, sans-serif;
+            color: white;
+            background-color: #80D0C7;
+            background-image: linear-gradient(180deg, #0093E9 0%, #80D0C7 100%);
+            background-repeat: no-repeat;
+            background-size: auto;
+            display: inline-block;
+            margin: 0px auto;
+            text-align: center;
+            font-size: 24px;
+        }
+        #header {
+            background-color: white;
+            color: #CD5C5C;
+            font-size: 72px;
+            box-shadow: 0px 2px 5px #0081CC;
+        }
+        .inputfile {
+            padding: 12px 20px;
+            margin: 8px 0;
+            box-sizing: border-box;
+            width: 0.1px;
+            height: 0.1px;
+            opacity: 0;
+            overflow: hidden;
+            position: absolute;
+            z-index: -1;
+            cursor: pointer;
+        }
+
+        .inputfile + label {
+            font-size: 1.25em;
+            font-weight: 700;
+            color: white;
+            background-color: black;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .inputfile:focus + label,
+        .inputfile + label:hover {
+            background-color: red;
+            cursor: pointer;
+        }
+
+        input[type=button], input[type=submit], input[type=reset] {
+            background-color: #CD5C5C;
+            border: none;
+            color: white;
+            padding: 16px 32px;
+            text-decoration: none;
+            margin: 4px 2px;
+            cursor: pointer;
+            box-shadow: 2px 2px 5px #0081CC;
+        }
+
+        #upload {
+            cursor: pointer;
+        }
+        #upload:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<title>PiFrame</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<!--link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"-->
+<body>
+    <div id="header">PiFrame</div>
+    <div id="uploadForm">
+        <form action="/upload" method="post" enctype="multipart/form-data">
+            <p><input type="file" name="file" id="file" class="inputfile" accept="image/*"></p>
+            <label id="upload" for="file">Bild auswählen...</label>
+            <p><input type="submit" value="Upload" name="submit" id="submit"></p>
+        </form>
+    </div>
+
+    <script>
+        var upload = document.getElementById('upload');
+        var file = document.getElementById('file');
+        var submit = document.getElementById('submit');
+
+        submit.disabled = true;
+        submit.style.backgroundColor = 'grey';
+        submit.style.color = 'lightgrey';
+        submit.style.cursor = 'default';
+        submit.style.fontStyle = 'italic';
+
+        file.addEventListener('input', updateValue);
+          
+        function updateValue(e) {
+            if(file.files.length == 0 ) {
+                upload.innerHTML = "Bild auswählen...";
+
+                submit.disabled = true;
+                submit.style.backgroundColor = 'grey';
+                submit.style.color = 'lightgrey';
+                submit.style.cursor = 'default';
+                submit.style.fontStyle = 'italic';
+            } else {
+                upload.innerHTML = e.target.value.replace(/^.*[\\\/]/, '');
+
+                submit.disabled = false;
+                submit.style.backgroundColor = '#CD5C5C';
+                submit.style.color = 'white';
+                submit.style.cursor = 'pointer';
+                submit.style.fontStyle = 'normal';
+            }
+        }
+    </script>
+</body>
+
+</html>
