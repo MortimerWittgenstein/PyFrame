@@ -3,7 +3,7 @@ from IT8951 import constants
 from PIL import Image
 
 class EPaper:
-    def displayImage(self, image, bgColor=0xffffff):
+    def displayImage(self, image):
         content = Image.open(image)
 
         # auto rotate depending on screen size
@@ -18,18 +18,14 @@ class EPaper:
         # make screen clear
         screen.clear()
 
-        screen.frame_buf.paste(0xFF, box=(0, 0, screen.width, screen.height))
+        #screen.frame_buf.paste(0xFF, box=(0, 0, screen.width, screen.height))
         dims = (screen.width, screen.height)
         content.thumbnail(dims)
 
-        # set background color
-        img = Image.new("RGB", dims, bgColor)
-
-        # align image with bottom of screen
+        # align image in center of screen
         paste_coords = [int((dims[i] - content.size[i]) / 2) for i in (0,1)]
-        img.paste(content, paste_coords)
 
-        screen.frame_buf.paste(img, (0, 0))
+        screen.frame_buf.paste(content, paste_coords)
 
         # display the image
         screen.draw_full(constants.DisplayModes.GC16)
