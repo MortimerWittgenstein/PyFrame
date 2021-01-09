@@ -8,7 +8,7 @@ class EPaper:
             content = Image.open(image)
         else:
             print(image)
-            content = Image.fromarray(image)
+            content = Image.open(image)
 
         # auto rotate depending on screen size
         if content.width > content.height:
