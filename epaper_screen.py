@@ -4,11 +4,11 @@ from PIL import Image
 
 class EPaper:
     def displayImage(self, image, bgColor=0xffffff):
-        if isinstance(content, str):
+        if isinstance(image, str):
             content = Image.open(image)
         else:
             content = Image.fromarray(image)
-            
+
         # auto rotate depending on screen size
         if content.width > content.height:
             rotation = None
