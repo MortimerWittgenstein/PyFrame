@@ -10,7 +10,6 @@ app.config['UPLOAD_FOLDER'] = os.path.join(os.path.dirname(__file__), 'pictures'
 @app.route('/')
 def home():
         return render_template('index.html')
-        #return "<h1>PiFrame</h1><p>Upload file via HTTP Request</p>"
 
 @app.route('/upload', methods=['POST'])
 def upload():
