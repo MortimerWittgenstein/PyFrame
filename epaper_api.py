@@ -1,10 +1,8 @@
 import sys, os, time
 from flask import Flask, request, render_template, redirect, url_for
+from epaper_screen import EPaper
 
 app = Flask(__name__)
-
-#app.config["DEBUG"] = True
-#app.config['UPLOAD_FOLDER'] = os.path.join(os.path.dirname(__file__), 'pictures')
 
 @app.route('/')
 def home():
@@ -13,18 +11,12 @@ def home():
 @app.route('/upload', methods=['POST'])
 def upload():
     if 'file' not in request.files:
-        return 'there is no file in form!'
-    file = request.files['file']
-    #path = os.path.join(app.config['UPLOAD_FOLDER'], file.filename)
-    #file.save(path)
+        return 'There is no file in form!'
 
-    from epaper_screen import EPaper
+    file = request.files['file']
 
     eInkScreen = EPaper()
-    #eInkScreen.displayImage(path)
     eInkScreen.displayImage(file)
-
-    #os.remove(path)
 
     return redirect(url_for('home'), code=302)
 
