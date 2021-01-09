@@ -3,15 +3,19 @@ from IT8951 import constants
 from PIL import Image
 
 class EPaper:
-    def displayImage(self, path, bgColor=0xffffff):
-        content = Image.open(path)
-
+    def displayImage(self, image, bgColor=0xffffff):
+        if isinstance(content, str):
+            content = Image.open(image)
+        else:
+            content = Image.fromarray(image)
+            
         # auto rotate depending on screen size
         if content.width > content.height:
             rotation = None
         else:
             rotation = 'CW'
 
+        # init screen; use vcom value of your screen
         screen = AutoEPDDisplay(vcom=-2.13, rotate=rotation)
 
         # make screen clear
