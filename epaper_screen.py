@@ -6,7 +6,7 @@ class EPaper:
     def displayImage(self, image):
         content = Image.open(image)
 
-        # auto rotate depending on screen size
+        # auto rotate depending on aspect ratio
         if content.width > content.height:
             rotation = None
         else:
@@ -18,12 +18,12 @@ class EPaper:
         # make screen clear
         screen.clear()
 
-        #screen.frame_buf.paste(0xFF, box=(0, 0, screen.width, screen.height))
-        dims = (screen.width, screen.height)
-        content.thumbnail(dims)
+        # shrink image if necessary
+        screen_dims = (screen.width, screen.height)
+        content.thumbnail(screen_dims)
 
         # align image in center of screen
-        paste_coords = [int((dims[i] - content.size[i]) / 2) for i in (0,1)]
+        paste_coords = [int((screen_dims[i] - content.size[i]) / 2) for i in (0,1)]
 
         screen.frame_buf.paste(content, paste_coords)
 
