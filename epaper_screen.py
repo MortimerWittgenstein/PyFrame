@@ -12,7 +12,7 @@ class EPaper:
         else:
             rotation = 'CW'
 
-        screen = AutoEPDDisplay(vcom=-1.50, rotate=rotation)
+        screen = AutoEPDDisplay(vcom=-2.47, rotate=rotation)
 
         # make screen clear
         screen.clear()
