@@ -19,7 +19,7 @@ pip3 install flask
 ```
 
 ### How to run
-1. Run `python3 epaper_api.py` to enable web api.
+1. Run `sudo python3 epaper_api.py` to enable web api.
 2. Access your Pi via hostname or IP address in a browser
 3. Upload a file
 
