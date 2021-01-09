@@ -7,6 +7,7 @@ class EPaper:
         if isinstance(image, str):
             content = Image.open(image)
         else:
+            print(image)
             content = Image.fromarray(image)
 
         # auto rotate depending on screen size
