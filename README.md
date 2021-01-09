@@ -11,11 +11,14 @@ IT8951 driver library for Python by GregDMeyer (all creds to him):
 https://github.com/GregDMeyer/IT8951
 ```
 
-Common librarties
+Common libraries
 ```
 pip3 install RPi.GPIO
 pip3 install pillow
 pip3 install flask
+
+sudo apt-get install libopenjp2-7
+sudo apt install libtiff5
 ```
 
 ### How to run
