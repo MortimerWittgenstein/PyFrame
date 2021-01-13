@@ -16,7 +16,7 @@ class EPaper:
         screen = AutoEPDDisplay(vcom=-2.13, rotate=rotation)
 
         # make screen clear
-        screen.clear()
+        #screen.clear()
 
         # shrink image if necessary
         screen_dims = (screen.width, screen.height)
